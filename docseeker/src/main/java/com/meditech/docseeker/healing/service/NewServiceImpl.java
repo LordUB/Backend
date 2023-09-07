@@ -18,7 +18,6 @@ import java.util.Set;
 
 @Service
 public class NewServiceImpl implements NewService {
-
     private static final String ENTITY = "New";
     private NewRepository newRepository;
     private final Validator validator; //jakarta.validation.validator no confundir
@@ -59,7 +58,6 @@ public class NewServiceImpl implements NewService {
             throw new ResourceValidationException(ENTITY,"AN new with the same name already exits");
 
         return newRepository.save(newapp);
-
     }
 
     @Override

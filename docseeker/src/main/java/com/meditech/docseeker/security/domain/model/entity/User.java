@@ -18,7 +18,7 @@ import java.util.Set;
 @With
 @AllArgsConstructor
 @Table(name = "users")
-public class User extends AuditModel {
+public class  User extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,24 +1,26 @@
 package com.meditech.docseeker.security.domain.model.entity;
 
 
-import com.meditech.docseeker.shared.domain.model.AuditModel;
+import com.meditech.docseeker.healing.domain.model.entity.Reservation;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+
 import java.util.Set;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
 @With
 @AllArgsConstructor
 @Table(name = "users")
-public class  User extends AuditModel {
+public class  User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,9 +46,13 @@ public class  User extends AuditModel {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @NotBlank
+    private List<Reservation> list_reservation;
+
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+        list_reservation= new ArrayList<>();
     }
 }

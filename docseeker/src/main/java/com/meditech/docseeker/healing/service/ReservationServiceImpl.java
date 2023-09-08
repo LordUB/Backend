@@ -31,12 +31,16 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void create_reservation(Long id, String date, String time, New aNew, User user) {
+    public boolean create_reservation(Long id, String date, String time, New aNew, User user) {
+
         Reservation reservation = new Reservation(id, date, time, aNew);
-        if(user.getList_reservation().stream().noneMatch(n-> Objects.equals(n.getDate(),reservation.getDate())) &&
+        if(user.getList_reservation().stream().noneMatch(n-> Objects.equals(n.getDate(),reservation.getDate())) ||
                 user.getList_reservation().stream().noneMatch(n-> Objects.equals(n.getTime(),reservation.getTime()))){
+
             user.getList_reservation().add(reservation);
+            return true;
         }
+        return false;
     }
 
 

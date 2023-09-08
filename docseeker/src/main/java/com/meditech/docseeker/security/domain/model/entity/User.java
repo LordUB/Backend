@@ -1,6 +1,7 @@
 package com.meditech.docseeker.security.domain.model.entity;
 
 
+import com.meditech.docseeker.healing.domain.model.entity.New;
 import com.meditech.docseeker.healing.domain.model.entity.Reservation;
 import lombok.*;
 
@@ -49,10 +50,15 @@ public class  User {
     @NotBlank
     private List<Reservation> list_reservation;
 
+    private CreditCard creditcard;
+
+    private List<New> listNews;
+
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
         list_reservation= new ArrayList<>();
+        listNews = new ArrayList<>();
     }
 }

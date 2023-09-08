@@ -16,7 +16,7 @@ public interface ReservationService {
     New getById(Long newId);
 
     List<New> getAll();
-    void create_reservation(Long id, String date, String time, New aNew, User user);
+    boolean create_reservation(Long id, String date, String time, New aNew, User user);
 
     New update(Long newId, New request);
 

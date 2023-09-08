@@ -1,6 +1,8 @@
 package com.meditech.docseeker.security.service;
 
 
+import com.meditech.docseeker.healing.domain.model.entity.New;
+import com.meditech.docseeker.security.domain.model.entity.CreditCard;
 import com.meditech.docseeker.security.domain.model.entity.Role;
 import com.meditech.docseeker.security.domain.model.entity.User;
 import com.meditech.docseeker.security.domain.model.enumeration.Roles;
@@ -63,6 +65,14 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User not found with username: %s", username)));
         return UserDetailsImpl.build(user);
+    }
+
+    public boolean payment(CreditCard card, New Anew){
+
+        if (Anew.getPrice() <= card.getSaldo() ){
+            return true;
+        }
+        return false;
     }
 
     @Override

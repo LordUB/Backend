@@ -33,4 +33,7 @@ public class New extends AuditModel {
 
     @Column(name = "views")
     private Integer views;
+
+    private float price;
+
 }

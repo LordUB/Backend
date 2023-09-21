@@ -36,4 +36,7 @@ public class New extends AuditModel {
 
     private float price;
 
+    public New(long id, String image, String title, String descripcion, String info, int views) {
+        super();
+    }
 }

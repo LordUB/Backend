@@ -13,8 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class Reservation extends AuditModel {
-    @Id
-    private Long id;
+
 
     private String date;
 
@@ -23,8 +22,7 @@ public class Reservation extends AuditModel {
     private New aNew;
 
 
-    public Reservation(Long id, String date, String time, New aNew) {
-        this.id = id;
+    public Reservation(String date, String time, New aNew) {
         this.date = date;
         this.time = time;
         this.aNew = aNew;

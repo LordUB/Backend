@@ -1,31 +1,28 @@
 package com.meditech.docseeker.healing.service;
-import com.meditech.docseeker.healing.domain.model.entity.New;
-import com.meditech.docseeker.healing.domain.presistence.NewRepository;
 
+import com.meditech.docseeker.healing.domain.model.entity.New;
 import com.meditech.docseeker.security.domain.model.entity.User;
 import com.meditech.docseeker.security.service.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NewServiceImplTest {
+public class ReservationServiceImplTest {
 
+    ReservationServiceImpl _reservationServiceImpl;
     UserServiceImpl _userServiceImpl;
-    private ArrayList<New> ListNew;
     private User user;
+    private User user1;
 
 
     @BeforeEach
     public void setUp() {
 
         user = new User("Carlos23", "hola@hotmail.com", "123");
-
-
-        ListNew = new ArrayList<New>(); // Inicializa la lista
+        user1 = new User("Dafne2023", "dafne@hotmail.com", "456");
 
         New New1 = new New(1L, "doctor-palma.png",//Iguales
                 "Especialista en psiquiatria a cargo de ayudarte con tu ansiedad",
@@ -49,24 +46,8 @@ public class NewServiceImplTest {
         user.getListNews().add(New2);
         user.getListNews().add(New3);
 
+        _reservationServiceImpl = new ReservationServiceImpl();
         _userServiceImpl = new UserServiceImpl();
-    }
-
-    @Test
-    public void unsuccesfullCreate() {
-        New newToCreate;
-        newToCreate = new New(3L, "doctor-polo.jpeg",
-                "Especialista en psiquiatria a cargo de ayudarte con tu ansiedad",
-                "¿La ansiedad está afectando tu calidad de vida? ¡No estás solo! el" +
-                        "psquiatra polo especialista en trastornos de ansiedad está aquí para " +
-                        "ayudarte a recuperar el control y encontrar la tranquilidad que mereces.",
-                "236471592", 64);
-
-
-        boolean resultado = _userServiceImpl.createNew(newToCreate, user);
-
-        // Verificar que la noticia se haya guardado correctamente
-        assertEquals(false, resultado);
     }
 
     @Test
@@ -79,10 +60,11 @@ public class NewServiceImplTest {
                         "ayudarte a recuperar el control y encontrar la tranquilidad que mereces.",
                 "236471592", 64);
 
-        boolean resultado = _userServiceImpl.createNew(newToCreate2, user);
+        boolean resultado1 = _userServiceImpl.createNew(newToCreate2, user);
+        boolean resultado2 = _reservationServiceImpl.create_reservation("23/09/2023", "05:30", user.getListNews().get(3),user1);
 
         // Verificar que la noticia se haya guardado correctamente
-        assertEquals(true, resultado);
+        assertEquals(true, resultado2);
+        assertEquals("Especialista en medicina general para ansianos", user1.getList_reservation().get(0).getANew().getTitle());
     }
-
 }

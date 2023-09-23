@@ -34,6 +34,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -164,6 +165,15 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public Boolean createNew(New _new, User user) {
+        if (user.getListNews().stream().noneMatch(n-> Objects.equals(n.getTitle(), _new.getTitle()))){
+            user.getListNews().add(_new);
+            return true;
+        }
+        return false;
     }
 
 }

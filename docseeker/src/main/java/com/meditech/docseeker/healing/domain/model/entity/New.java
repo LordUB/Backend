@@ -36,7 +36,13 @@ public class New extends AuditModel {
 
     private float price;
 
-    public New(long id, String image, String title, String descripcion, String info, int views) {
-        super();
+    public New(Long id, String image, String title, String description, String info, float price) {
+        this.id = id;
+        this.image = image;
+        this.title = title;
+        this.description = description;
+        this.info = info;
+        this.views = views;
+        this.price = price;
     }
 }

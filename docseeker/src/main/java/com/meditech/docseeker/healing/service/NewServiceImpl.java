@@ -22,7 +22,7 @@ public class NewServiceImpl implements NewService {
     private NewRepository newRepository;
     private final Validator validator; //jakarta.validation.validator no confundir
 
-    public NewServiceImpl(NewRepository newRepository, Validator validator){
+    public NewServiceImpl(NewRepository newRepository, Validator validator) {
         this.newRepository = newRepository;
         this.validator = validator;
     }

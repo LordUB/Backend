@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Asumiendo que el código fuente se clona en el directorio correcto
+
                 checkout scm
             }
         }
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Cambiar al directorio donde está el pom.xml antes de ejecutar Maven
                 dir('D:/UNIVERSIDAD/7MO_SEMESTRE/Disenio_de_experimentos/TRABAJO DOCKSEEKER/Backend') {
-                    bat 'mvn clean test -Dtest=ReservationServiceImplTest'
+                    bat 'mvn clean test'
                 }
             }
         }

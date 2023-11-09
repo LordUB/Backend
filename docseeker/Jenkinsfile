@@ -2,40 +2,37 @@ pipeline {
     agent any
 
     tools {
-        // Asegúrate de que Maven y JDK están configurados en la sección de herramientas globales de Jenkins
-        maven 'MAVEN_3_6_3' // El nombre de la herramienta Maven configurada en Jenkins
+        maven 'MAVEN_3_6_3'
         jdk 'JDK_17'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Obtener el código fuente del repositorio
+                // Asumiendo que el código fuente se clona en el directorio correcto
                 checkout scm
             }
         }
 
-    stage('Unit Test') {
-        steps {
-            // Ejecutar las pruebas unitarias específicamente la prueba succesfullCreate
-            bat 'mvn -Dtest=ReservationServiceImplTest#succesfullCreate test'
-        }
-        post {
-            always {
-                // Guardar y publicar los resultados de las pruebas unitarias
-                junit '**/target/surefire-reports/*.xml'
+        stage('Unit Test') {
+            steps {
+                // Cambiar al directorio donde está el pom.xml antes de ejecutar Maven
+                dir('D:/UNIVERSIDAD/7MO_SEMESTRE/Disenio_de_experimentos/TRABAJO DOCKSEEKER/Backend/docseeker') {
+                    bat 'mvn clean test -Dtest=ReservationServiceImplTest#succesfullCreate'
+                }
+            }
+            post {
+                always {
+                    // Asumiendo que estás en el directorio correcto y los informes se generan allí
+                    junit '**/target/surefire-reports/*.xml'
+                }
             }
         }
     }
 
-
-        // Puedes agregar más etapas como compilación, análisis de código, despliegue, etc.
-    }
-
     post {
-        // Acciones de limpieza y otros pasos finales
         always {
-            cleanWs() // Limpia el workspace
+            cleanWs()
         }
     }
 }

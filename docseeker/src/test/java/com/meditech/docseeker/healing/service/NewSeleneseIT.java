@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.time.Duration;
 
 
+import io.cucumber.java.ja.但し;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +22,6 @@ import org.testng.annotations.Test;
 @Test
 public class NewSeleneseIT {
     private WebDriver driver=null;
-
     @BeforeClass
     public void inicializarDriver()throws MalformedURLException{
 
@@ -35,7 +35,7 @@ public class NewSeleneseIT {
     }
 
 
-
+    @Test
     public void testLoginUsuario() {
 
         driver.get("http://localhost:4200/patientsLogIn");

@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Cambiar al directorio donde está el pom.xml antes de ejecutar Maven
                 dir('D:/UNIVERSIDAD/7MO_SEMESTRE/Disenio_de_experimentos/TRABAJO DOCKSEEKER/Backend/docseeker') {
-                    bat 'mvn clean test -Dtest=ReservationServiceImplTest#succesfullCreate'
+                    bat 'mvn clean test -Dtest=ReservationServiceImplTest'
                 }
             }
             post {

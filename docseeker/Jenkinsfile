@@ -15,18 +15,19 @@ pipeline {
             }
         }
 
-        stage('Unit Test') {
-            steps {
-                // Ejecutar las pruebas unitarias específicamente la prueba succesfullCreate
-                sh 'mvn -Dtest=ReservationServiceImplTest#succesfullCreate test'
-            }
-            post {
-                always {
-                    // Guardar y publicar los resultados de las pruebas unitarias
-                    junit '**/target/surefire-reports/*.xml'
-                }
+    stage('Unit Test') {
+        steps {
+            // Ejecutar las pruebas unitarias específicamente la prueba succesfullCreate
+            bat 'mvn -Dtest=ReservationServiceImplTest#succesfullCreate test'
+        }
+        post {
+            always {
+                // Guardar y publicar los resultados de las pruebas unitarias
+                junit '**/target/surefire-reports/*.xml'
             }
         }
+    }
+
 
         // Puedes agregar más etapas como compilación, análisis de código, despliegue, etc.
     }
